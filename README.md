@@ -7,22 +7,22 @@ If that is the case, then I am happy for you to open issues or pull requests in 
 of these concepts.
 
 ## Basic structure
-### `/web`
+### `src/web`
 This is where you are going to find all the front end code and the main `index.php` which bootstraps the app
 and sets up the controllers and DI container, etc.
 
-### `/views`
+### `src/views`
 The twig based templates used for all page rendering.
 
-### `/Pmc/Blog`
+### `src/Pmc/Blog`
 This contains the main appliction DI container, controllers and core event sourcing code. The main components 
 are a `MessageBus` (allows any number of listeners to subscribe to events/messages), a `CommandBus` (Only allows one 
 listener to subscribe per command), the `EventStore` abstraction and a `GigaFactory` (A factoy of factories)
 
-### `/Pmc/Database`
+### `src/Pmc/Database`
 Basic MySQL databse abstraction layer.
 
-### `/Pmc/EsModules`
+### `src/Pmc/EsModules`
 One goal I wanted to achive with the setup was to have the core event-sourcing setup separated from any "domain" 
 logic. So I implemented the idea of *modules* which would be self contained blocks of domain logic.
 
