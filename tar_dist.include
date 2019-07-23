@@ -1,0 +1,6 @@
+src/app
+src/views
+src/vendor
+src/web
+src/prod-config.ini
+src/dev-config.ini

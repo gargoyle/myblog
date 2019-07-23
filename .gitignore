@@ -1,0 +1,8 @@
+.vagrant
+dist.tgz
+src/vendor
+src/web/.sass-cache
+.sass-cache
+*cloudimg-console.log
+src/prod-config.ini
+blog_dump.sql

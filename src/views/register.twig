@@ -1,0 +1,60 @@
+{% extends "layout.twig" %}
+
+{% block main_content %}
+<div class="row">
+    <div class="small-12 medium-10 large-9 medium-centered large-centered columns article-list">
+        <article class="post">
+            <header class="post-head">
+                <h1 class="post-title">User Registration</h1>
+                <div class="post-meta">
+                    <span class="date">{{ "now"|date('jS F\\, Y') }}</span>
+                </div>
+            </header>
+            
+            <div class="post-body">
+                
+                {% if error|default(false) %}
+                <div class="small-12 medium-10 large-9 medium-centered large-centered columns">
+                    <div class="callout alert">
+                        <h2>There was an error processing the request</h2>
+                        <p>{{ error }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <form method="POST" class="small-12 medium-10 large-9 medium-centered large-centered columns normal-form">
+                    <input type="hidden" name="csrfToken" value="{{ csrfToken }}">
+                    
+                    <div class="input-group">
+                        <span class="input-group-label">Full Name</span>
+                        <input class="input-group-field" type="text" id="fullName" name="fullName" value="{{ existingValues.fullName|default('') }}">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-label">Email Address</span>
+                        <input class="input-group-field" type="text" id="emailAddress" name="emailAddress" value="{{ existingValues.emailAddress|default('') }}">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-label">Username</span>
+                        <input class="input-group-field" type="text" id="username" name="username" value="{{ existingValues.username|default('') }}">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-label">Passphrase</span>
+                        <input class="input-group-field" type="password" id="passphrase" name="passphrase" value="{{ existingValues.passphrase|default('') }}">
+                    </div>
+                    
+                    <div class="text-right">
+                        <button class="button button-primary" type="submit">Go</button>
+                    </div>
+                </form>
+            </div>
+            
+            
+            <footer class="post-footer">
+                <div class="tags">
+                    <span class="tag">Rules</span>
+                </div>
+            </footer>
+        </article>
+    </div>
+</div>
+{% endblock %}

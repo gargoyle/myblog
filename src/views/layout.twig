@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block open_graph %}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:creator" content="{{ global.twitterHandle }}" />
+            <meta property="og:title" content="{{ pageTitle|default('Paul Court') }}" />
+            <meta property="og:description" content="{{meta.description|default("Web application developer specialising in PHP, DevOps and InfoSec enthusiast.")}}" />
+            <meta property="og:image" content="https://files.rgoyle.com/images/gargoyle_avatar.png" />
+            <meta name="keywords" content="{{meta.keywords|default("PHP, Web, Application, Developer, Website, Security, InfoSec, DevOps, Linux, OWASP, Nginx, Event, Sourcing, AWS")}}">
+            <meta name="description" content="{{meta.description|default("Web application developer specialising in PHP, DevOps and InfoSec enthusiast.")}}">
+            <title>{{ pageTitle|default('Paul Court') }}</title>
+        {% endblock %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400|Exo:400">
+        <link rel="stylesheet" href="/css/app.css?nonce=345359">
+        <link rel="stylesheet" href="/css/prism.css?nonce=345359">
+        <script src="/js/vendor/jquery.min.js"></script>
+        <script src="/js/vendor/ga.js"></script>
+    </head>
+    <body class="myblog">
+        {% include '_topBar.twig' %}
+
+        <div class="main-outer-wrapper">
+            <div class="main-content">
+                {% block main_content %}
+                {% endblock %}
+            </div>
+
+            <div class="aside-wrapper">
+                {% block side_bar %}
+                    <aside class="author paper">
+                        <header>
+                        </header>
+                        <div class="content">
+                            <p>
+                                Hello. I've been developing web apps for {{ (now|date('Y'))-1995 }} years and tinkering with
+                                computers, servers and operating systems for a bit longer than that. Somewhere along the way 
+                                it started getting called DevOps.
+                            </p>
+                        </div>
+                        {#<footer></footer>#}
+                    </aside>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% include '_footer.twig' %}
+
+        {% block footer_javascript %}
+            <script src="/js/vendor/prism.js"></script>
+            
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "layout.twig" %}
+
+{% block main_content %}
+    <div class="article-list">
+        {% if (articles|length > 0) %}
+            {% for article in articles %}
+                <article class="post paper">
+                    <header class="post-head">
+                        <h1 class="post-title"><a href="/article/{{ article.slug }}">{{ article.title }}</a></h1>
+
+                        <div class="post-meta">
+                            <span class="meta-label">First Published:</span> <span class="meta-value">{{ microtimeDate(article.published) }}</span> |
+                            <span class="meta-label">Last Updated:</span> <span class="meta-value">{{ microtimeDate(article.lastUpdated) }}</span>
+                        </div>
+                    </header>
+
+                    <div class="post-body">
+                        <p>
+                            {{ (article.body|slice(0,512)|trim ~ "...")|markdown }}
+                        </p>
+                    </div>
+
+                    <footer class="post-footer">
+                        <div class="tags">
+                            {% if article.tags != "" %}
+                                {% for tag in article.tags|split(',') %}
+                                    <span class="tag">{{ tag|trim }}</span>{{ loop.last ? '':', ' }}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="actions">
+                            <a href="/article/{{ article.slug }}" class="button">Continue reading</a>
+                        </div>
+                    </footer>
+                </article>
+            {% endfor %}
+        {% else %}
+            <article class="post">
+                <header class="post-head">
+                    <h1 class="post-title">No Articles!</h1>
+
+                    <div class="post-meta">
+                        <span class="date">{{ "now"|date('jS F\\, Y') }}</span>
+                    </div>
+                </header>
+                <div class="post-body">
+                    <p>There are no articles to display!</p>
+                </div>
+            </article>
+        {% endif %}
+    </div>
+{% endblock %}

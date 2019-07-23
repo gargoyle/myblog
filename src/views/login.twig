@@ -1,0 +1,76 @@
+{% extends "layout.twig" %}
+
+{% block main_content %}
+<div class="row">
+    <div class="small-12 medium-10 large-9 medium-centered large-centered columns article-list">
+        <article class="post">
+            <header class="post-head">
+                <h1 class="post-title">User Login</h1>
+                <div class="post-meta">
+                    <span class="date">{{ "now"|date('jS F\\, Y') }}</span>
+                </div>
+            </header>
+            
+            <div class="post-body">
+                
+                {% if error|default(false) %}
+                <div class="small-12 medium-10 large-9 medium-centered large-centered columns">
+                    <div class="callout alert">
+                        <h2>There was an error processing the request</h2>
+                        <p>{{ error }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <form method="POST" action="/account/login" class="small-12 medium-10 large-9 medium-centered large-centered columns normal-form">
+                    <input type="hidden" name="csrfToken" value="{{ csrfToken }}">
+                    <div class="input-group">
+                        <span class="input-group-label">Email or Username</span>
+                        <input class="input-group-field" type="text" id="identification" name="identification" value="{{ existingValues.identification|default('') }}">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-label">Passphrase</span>
+                        <input class="input-group-field" type="password" id="passphrase" name="passphrase" value="{{ existingValues.passphrase|default('') }}">
+                    </div>
+                    
+                    <div class="text-right">
+                        <button class="button button-primary" type="submit">Login</button>
+                    </div>
+                </form>
+                    
+                    
+                    
+                <form method="POST" action="/account/ppreset" class="small-12 medium-10 large-9 medium-centered large-centered columns normal-form">
+                    <input type="hidden" name="csrfToken" value="{{ csrfToken }}">
+                    <div class="input-group">
+                        <span class="input-group-label">Email or Username</span>
+                        <input class="input-group-field" type="text" id="identification" name="identification" value="{{ existingValues.identification|default('') }}">
+                    </div>                    
+                    
+                    <div class="text-right">
+                        <button class="button button-primary" type="submit">Reset Passphrase</button>
+                    </div>
+                </form>
+                    
+                <form method="POST" action="/account/loginWithToken" class="small-12 medium-10 large-9 medium-centered large-centered columns normal-form">
+                    <input type="hidden" name="csrfToken" value="{{ csrfToken }}">
+                    <div class="input-group">
+                        <span class="input-group-label">Token</span>
+                        <input class="input-group-field" type="text" id="token" name="token" value="{{ existingValues.token|default('') }}">
+                    </div>                    
+                    
+                    <div class="text-right">
+                        <button class="button button-primary" type="submit">Login using token</button>
+                    </div>
+                </form>
+            </div>
+            
+            
+            <footer class="post-footer">
+                <div class="tags">
+                </div>
+            </footer>
+        </article>
+    </div>
+</div>
+{% endblock %}

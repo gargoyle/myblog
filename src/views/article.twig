@@ -1,0 +1,40 @@
+{% extends "layout.twig" %}
+
+{% block open_graph %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="{{ global.twitterHandle }}" />
+    <meta property="og:title" content="{{ article.title }}" />
+    <meta property="og:description" content="{{ article.summary }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ article.openGraphImageUrl }}" />
+
+    <meta name="keywords" content="{{ article.tags|default([])|join(', ') }}">
+    <meta name="description" content="{{ article.summary }}">
+    <title>{{ article.title }}</title>
+{% endblock %}
+
+{% block main_content %}
+    <article class="post paper">
+        <header class="post-head">
+            <h1 class="post-title">{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="meta-label">First Published:</span> <span class="meta-value">{{ microtimeDate(article.published) }}</span> &bull; 
+                <span class="meta-label">Last Updated:</span> <span class="meta-value">{{ microtimeDate(article.lastUpdated) }}</span>
+            </div>
+        </header>
+
+        <div class="post-body">
+            {{ article.body|markdown }}
+        </div>
+
+        <footer class="post-footer">
+            <div class="tags">
+                {% if article.tags != "" %}
+                    {% for tag in article.tags|split(',') %}
+                        <span class="tag">{{ tag|trim }}</span>{{ loop.last ? '':', ' }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </footer>
+    </article>
+{% endblock %}

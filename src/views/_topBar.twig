@@ -1,0 +1,20 @@
+<header class="title-bar">
+    <div class="title-section">
+        <h1 class=""><a href="/" >Paul Court</a></h1>
+    </div>
+    <div class="link-section">
+        <ul class="">
+            <li><a href="/">Home</a></li>
+            {% if "Admin" in global.profile.roles|default([]) %}
+                <li><a href="/admin/editarticle">Create Post</a></li>
+                <li><a href="/admin/">Admin</a></li>
+                {% endif %}
+
+            {% if "Member" in global.profile.roles|default([]) %}
+                <li><a href="/account/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/account/login">Login</a></li>
+                {% endif %}
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,91 @@
+{% extends "admin/adminLayout.twig" %}
+
+{% block main_content %}
+    <div class="edit-panel">
+
+        <div class="preview">
+            <article class="post paper" id="livePreview">
+                <header class="post-head">
+                    <h1 class="post-title">{{ currentValues.title|default('No title yet') }}</a></h1>
+
+                    <div class="post-meta">
+                        <span class="date">{{ "now"|date('jS F\\, Y') }}</span>
+                        <span class="date">{{ "now"|date('jS F\\, Y') }}</span>
+                        <span class="date">{{ "now"|date('jS F\\, Y') }}</span>
+                    </div>
+                </header>
+
+                <div class="post-body">
+                    {{ currentValues.body|default('')|markdown }}
+                </div>
+            </article>
+        </div>
+        <div class="editForm">
+            <div class="og-card-preview">
+                <div class="wrapper">
+                    <div class="image"><img src="{{ currentValues.openGraphImageUrl|default('') }}" id="ogCardPreviewImage"/></div>
+                    <div class="summary" id="ogCardPreviewSummary"><span class="title">{{currentValues.title|default('No title yet')}}</span>{{ currentValues.summary|default('')|slice(0, 165) }}</div>
+                    <span class="clearfix">ga.rgoyle.com</span>
+                </div>
+            </div>
+                    
+            <form id="editPost">
+                <input type="hidden" name="csrfToken" value="{{ csrfToken }}">
+                <input type="hidden" name="articleId" value="{{ articleId }}">
+
+                {% if error|default(false) %}
+                    <div class="grid-x">
+                        <div class="small-12 cell">
+                            <div class="alert callout blog-error">
+                                <p class="summary">There was an error processing the request</p>
+                                <p class="detail">{{ error }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="grid-x">
+
+                    <label class="" for="openGraphImageUrl">
+                        OpenGraph Image
+                        <input class="" type="text" id="openGraphImageUrl" name="openGraphImageUrl" value="{{ currentValues.openGraphImageUrl|default('') }}" placeholder="URL for an image to display on OG consumers">
+                    </label>
+
+
+
+                    <label class="" for="articleTitle">
+                        Title
+                        <input class="" type="text" id="articleTitle" name="articleTitle" value="{{ currentValues.title|default('') }}" placeholder="Post title">
+                    </label>
+
+                    <label class="" for="articleSlug">
+                        Slug
+                        <input class="" type="text" id="articleSlug" name="articleSlug" value="{{ currentValues.slug|default('') }}" placeholder="some-article-slug">
+                    </label>
+
+
+
+                    <label class="" for="articleSummary">
+                        Summary
+                        <textarea class="" id="articleSummary" name="articleSummary" rows="5" placeholder="A short summary of the article">{{ currentValues.summary|default('') }}</textarea>
+                    </label>
+
+
+
+                    <label class="" for="articleBody">
+                        Body
+                        <textarea class="" id="articleBody" name="articleBody" rows="25" placeholder="Main article body">{{ currentValues.body|default('') }}</textarea>
+                    </label>
+
+                    <label class="" for="articleTag">
+                        Tag
+                        <input class="" type="text" id="articleTags" name="articleTags" value="{{ currentValues.tags|default('') }}" placeholder="some, tags, here">
+                    </label>
+
+                    <button type="button" class="button button-primary" id="publishArticle">Publish Article</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

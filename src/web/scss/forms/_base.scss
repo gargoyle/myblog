@@ -1,0 +1,70 @@
+.myblog {
+    [type='text'], [type='password'], 
+    [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], 
+    [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], 
+    [type='color'], textarea {
+        display: block;
+        width: 100%;
+        border: 1px solid #333;
+        padding: 4px;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+        
+        font-family: 'Exo', Helvetica, Roboto, Arial, sans-serif;
+        font-size: 16px;
+        
+        &:focus {
+            outline: none;
+            border: 1px solid $input-border-focus;
+            box-shadow: 0 0 5px $input-border-focus;
+            transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+        }
+
+        //margin-bottom: 1rem;
+        &::placeholder {
+            color: #666;
+        }
+        
+        &.updating {
+            border: 1px solid orange;
+            box-shadow: 0 0 5px orange;
+        }
+        
+        &.updateSuccessful {
+            border: 1px solid lightskyblue;
+            box-shadow: 0 0 5px lightskyblue;
+        }
+        
+        &.updateFailed {
+            border: 1px solid red;
+            box-shadow: 0 0 5px red;
+        }
+    }
+    
+    button {
+        &.updating {
+            background-color: orange;
+        }
+        
+        &.updateSuccessful {
+            background-color: lightskyblue;
+        }
+        
+        &.updateFailed {
+            background-color: red;
+        }
+    }
+
+
+
+    label {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        
+        color: $label-color;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        
+    }
+}

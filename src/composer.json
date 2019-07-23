@@ -1,0 +1,48 @@
+{
+    "name": "pmc/paulcourt",
+    "description": "Personal Website",
+    "authors": [
+        {
+            "name": "Paul Court",
+            "email": "g@rgoyle.com"
+        }
+    ],
+    "autoload": {
+        "psr-4" : {
+            "Pmc\\Blog\\": "app/Pmc/Blog/",
+            "Pmc\\Database\\": "app/Pmc/Database/",
+            "Pmc\\EsModules\\": "app/Pmc/EsModules/"
+        }
+    },
+    "repositories": [{
+        "type": "path",
+        "url": "../../../Library/PMC_Acl"
+    },{
+        "type": "path",
+        "url": "../../../Library/PMC_MessageBus"
+    },{
+        "type": "path",
+        "url": "../../../Library/PMC_Session"
+    },{
+        "type": "path",
+        "url": "../../../Library/PMC_ObejctLib"
+    }],
+    "minimum-stability":"dev",
+    "require": {
+        "twig/twig": "^1.24",
+        "aptoma/twig-markdown": "~2.0",
+        "pmc/session": ">=0.5 <2.0",
+        "pmc/objectlib": ">=0.9.1 <2.0",
+        "pmc/gigafactory": ">=0.8 <2.0",
+        "pmc/eventsourcelib": ">=0.9.2 <2.0",
+        "pmc/messagebus": ">=0.5 <2.0",
+        "domnikl/statsd": "~2.0",
+        "monolog/monolog": "^1.23",
+        "symfony/security-csrf": "^3.3",
+        "pmc/commandbus": "^0.5.0",
+        "michelf/php-markdown": "^1.7",
+        "symfony/routing": "4.2",
+        "symfony/http-foundation": "4.2",
+        "symfony/http-kernel": "4.2"
+    }
+}
