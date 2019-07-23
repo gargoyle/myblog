@@ -1,6 +1,4 @@
 # myblog
-The code that powers paulcourt.co.uk
-
 This is the application that powers my blog at paulcourt.co.uk. It was very much an exercise in learning about 
 Event Sourcing and CQRS - and as my first attempt at such, I expect there to be a few bits that more experienced
 CQRS'ers my find strange.
