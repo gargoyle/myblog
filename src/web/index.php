@@ -18,6 +18,8 @@ define('START_TIME', microtime(true));
 define('APP_ROOT', dirname(__DIR__));
 
 session_start();
+header("Set-Cookie: ".session_name()."=".session_id()."; path=/; secure; HttpOnly; SameSite=Lax");
+header("Feature-Policy: microphone 'none';");
 
 // Create out app container.
 $app = new AppContainer();
@@ -38,10 +40,12 @@ $blogController = new BlogController($app);
 $routes->addCollection($blogController->getRoutes());
 
 // Article Admin Routes
-$adminController = new Pmc\Blog\Http\Controllers\AdminController($app);
-$adminRoutes = $adminController->getRoutes();
-$adminRoutes->addPrefix('/admin');
-$routes->addCollection($adminRoutes);
+if ($app->getSession()->profile()->hasRole("Admin")) {
+    $adminController = new Pmc\Blog\Http\Controllers\AdminController($app);
+    $adminRoutes = $adminController->getRoutes();
+    $adminRoutes->addPrefix('/admin');
+    $routes->addCollection($adminRoutes);
+}
 
 // Account controller
 $accountController = new Pmc\Blog\Http\Controllers\AccountController($app);
