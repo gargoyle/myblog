@@ -61,6 +61,11 @@
         {% include '_footer.twig' %}
 
         {% block footer_javascript %}
+            <script>
+                $(document).ready(function () {
+                    $('code.php').addClass('language-php');
+                });
+            </script>
             <script src="/js/vendor/prism.js"></script>
             
         {% endblock %}
