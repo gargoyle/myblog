@@ -169,10 +169,9 @@ class AppContainer
             }
             
             $this->twig->addGlobal('global', [
-                'gaTrackingId' => "UA-92231682-1",
                 'appServedFrom' => gethostname(),
                 'profile' => $this->getSession()->profile(),
-                'twitterHandle' => "@I_Gargoyle_I"
+                'twitterHandle' => "@paulcourt101"
             ]);
 
             $this->twig->addExtension(new MarkdownExtension(new MichelfMarkdownEngine()));
