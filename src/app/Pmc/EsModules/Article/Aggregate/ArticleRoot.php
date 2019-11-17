@@ -187,6 +187,8 @@ class ArticleRoot extends AbstractRoot
     
     protected function applyArticlePublishedEvent(ArticlePublished $e)
     {
-        $this->published = $e->getTimestamp();
+        if ($this->published == null) {
+            $this->published = $e->getTimestamp();
+        }
     }
 }
