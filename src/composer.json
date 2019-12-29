@@ -42,7 +42,7 @@
         "pmc/commandbus": "^0.5.0",
         "michelf/php-markdown": "^1.7",
         "symfony/routing": "4.2",
-        "symfony/http-foundation": "4.2",
+        "symfony/http-foundation": "4.2.12",
         "symfony/http-kernel": "4.2"
     }
 }
